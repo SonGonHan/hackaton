@@ -5,6 +5,8 @@ import com.hackaton.task.trip.domain.Attraction;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 @RequiredArgsConstructor
 public class AttractionPersistenceAdapter implements AttractionRepository {
@@ -22,5 +24,12 @@ public class AttractionPersistenceAdapter implements AttractionRepository {
     public void delete(Attraction attraction) {
         var entity = mapper.toEntity(attraction);
         repository.delete(entity);
+    }
+
+    @Override
+    public List<Attraction> findAll() {
+        return repository.findAll().stream()
+                .map(mapper::toDomain)
+                .toList();
     }
 }

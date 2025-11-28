@@ -1,9 +1,12 @@
 package com.hackaton.task.trip.application.usecase;
 
-import com.hackaton.task.trip.application.in.AttractionServiceUseCase;
+import com.hackaton.task.trip.application.in.AttractionUseCase;
+import com.hackaton.task.trip.application.in.command.ParseObjectsCommand;
 import com.hackaton.task.trip.application.out.AttractionRepository;
 import com.hackaton.task.trip.domain.Attraction;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -12,19 +15,20 @@ import org.w3c.dom.NodeList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
-public class AttractionService implements AttractionServiceUseCase {
+public class AttractionService implements AttractionUseCase {
 
 	private final AttractionRepository attractionRepository;
 
-	public Boolean parseObjectsFromXml(String xmlPath) throws Exception {
+	@Override
+	@Transactional
+	public Boolean parseObjectsFromXml(ParseObjectsCommand command) throws Exception {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = factory.newDocumentBuilder();
-		Document doc = builder.parse(new File(xmlPath));
+		Document doc = builder.parse(new File(command.xmlPath()));
 
 		NodeList nodes = doc.getElementsByTagName("node");
 
