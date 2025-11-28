@@ -5,6 +5,7 @@ import com.hackaton.task.user_auth.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -39,5 +40,10 @@ public class UserPersistenceAdapter implements UserRepository {
     @Override
     public Optional<User> findById(Long id) {
         return repository.findById(id).map(mapper::toDomain);
+    }
+
+    @Override
+    public List<User> findAll() {
+        return repository.findAll().stream().map(mapper::toDomain).toList();
     }
 }

@@ -7,6 +7,7 @@ import com.hackaton.task.trip.domain.Trip;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -17,9 +18,9 @@ public class TripPersistenceMapper {
     private final AttractionPersistenceMapper mapper;
 
     public Trip toDomain(TripEntity entity) {
-        Set<Attraction> attractionSet = entity.getAttractions().stream()
+        var attractionSet = entity.getAttractions().stream()
                 .map(mapper::toDomain)
-                .collect(Collectors.toSet());
+                .toList();
 
         return Trip.builder()
                 .id(entity.getId())
@@ -29,14 +30,14 @@ public class TripPersistenceMapper {
     }
 
     public TripEntity toEntity(Trip domain) {
-        Set<AttractionEntity> attractionEntitySet = domain.getAttractions().stream()
+        var attractionList = domain.getAttractions().stream()
                 .map(mapper::toEntity)
-                .collect(Collectors.toSet());
+                .toList();
 
         return TripEntity.builder()
                 .id(domain.getId())
                 .name(domain.getName())
-                .attractions(attractionEntitySet)
+                .attractions(attractionList)
                 .build();
     }
 }

@@ -3,7 +3,7 @@ package com.hackaton.task.trip.domain;
 import lombok.Builder;
 import lombok.Data;
 
-import java.util.Set;
+import java.util.List;
 
 @Data
 @Builder
@@ -13,5 +13,5 @@ public class Trip {
 
     private String name;
 
-    private Set<Attraction> attractions;
+    private List<Attraction> attractions;
 }

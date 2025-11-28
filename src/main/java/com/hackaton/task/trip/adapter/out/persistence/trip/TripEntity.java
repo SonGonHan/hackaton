@@ -8,6 +8,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -23,8 +25,9 @@ public class TripEntity {
 
     private String name;
 
-    @OneToMany(mappedBy = "trip")
-    private Set<AttractionEntity> attractions;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "trip_id")
+    private List<AttractionEntity> attractions = new ArrayList<>();
 
 
 }

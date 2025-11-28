@@ -1,8 +1,8 @@
 package com.hackaton.task.user_auth.application.usecase;
 
 import com.hackaton.task.user_auth.adapter.in.web.dto.JwtAuthenticationResponse;
-import com.hackaton.task.user_auth.application.port.in.RegisterUserUseCase;
-import com.hackaton.task.user_auth.application.port.in.command.RegisterUserCommand;
+import com.hackaton.task.user_auth.application.port.in.AddUserUseCase;
+import com.hackaton.task.user_auth.application.port.in.command.AddUserCommand;
 import com.hackaton.task.user_auth.application.port.out.TokenGeneratorPort;
 import com.hackaton.task.user_auth.application.port.out.UserRepository;
 import com.hackaton.task.user_auth.domain.User;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class RegisterUserService implements RegisterUserUseCase {
+public class AddUserService implements AddUserUseCase {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -21,8 +21,8 @@ public class RegisterUserService implements RegisterUserUseCase {
 
 
     @Override
-    public JwtAuthenticationResponse registerUser(RegisterUserCommand command) {
-        if (userRepository.findByPhone(command.phone()).isPresent()){
+    public JwtAuthenticationResponse addUser(AddUserCommand command) {
+        if (userRepository.findByEmail(command.email()).isPresent()){
             throw new IllegalArgumentException("Phone already exists");
         }
         var user = User.builder()
@@ -32,7 +32,7 @@ public class RegisterUserService implements RegisterUserUseCase {
                 .firstName(command.firstName())
                 .lastName(command.lastName())
                 .middleName(command.middleName())
-                .role(UserRole.CLIENT)
+                .role(UserRole.EMPLOYEE)
                 .build();
         user = userRepository.save(user);
         String token = tokenGenerator.generateAccessToken(user);
