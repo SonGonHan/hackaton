@@ -16,4 +16,5 @@ public interface AttractionRepository {
     Optional<Attraction> findById(Long id);
 
     List<Attraction> findAll();
+    List<Attraction> findAllById(List<Long> ids);
 }
