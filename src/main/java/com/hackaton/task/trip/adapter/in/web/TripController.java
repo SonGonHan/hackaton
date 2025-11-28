@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class TripController {
 
-	private final ParseObjectsUseCase attractionServiceUseCase;
+	private final ParseObjectsUseCase parseObjectsUseCase;
 	private final MakeRoadService makeRoadService;
 
 	@Value("${app.res.xml-path}")
@@ -30,7 +30,7 @@ public class TripController {
 	@PostMapping("/parse_obj")
 	public ResponseEntity<Boolean> parseObjects() {
 		try {
-			attractionServiceUseCase.parseObjectsFromXml(new ParseObjectsCommand(OBJECT_XML));
+			parseObjectsUseCase.parseObjectsFromXml(new ParseObjectsCommand(OBJECT_XML));
 		} catch (Exception e) {
 			log.error(e.getMessage());
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(false);

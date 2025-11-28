@@ -1,6 +1,6 @@
 package com.hackaton.task.trip.application.usecase;
 
-import com.hackaton.task.trip.application.in.AttractionUseCase;
+import com.hackaton.task.trip.application.in.ParseObjectsUseCase;
 import com.hackaton.task.trip.application.in.command.ParseObjectsCommand;
 import com.hackaton.task.trip.application.out.AttractionRepository;
 import com.hackaton.task.trip.domain.Attraction;
@@ -19,7 +19,7 @@ import java.io.File;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class ParseObjectsService implements AttractionUseCase {
+public class ParseObjectsService implements ParseObjectsUseCase {
 
 	private final AttractionRepository attractionRepository;
 
