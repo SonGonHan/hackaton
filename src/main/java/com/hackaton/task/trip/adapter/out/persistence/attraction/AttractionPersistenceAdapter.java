@@ -7,12 +7,18 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+import java.util.List;
+import java.util.Optional;
+
+import java.util.stream.Collectors;
+
 @Repository
 @RequiredArgsConstructor
 public class AttractionPersistenceAdapter implements AttractionRepository {
 
     private final AttractionJpaRepository repository;
     private final AttractionPersistenceMapper mapper;
+
 
     @Override
     public void save(Attraction attraction) {
@@ -31,5 +37,17 @@ public class AttractionPersistenceAdapter implements AttractionRepository {
         return repository.findAll().stream()
                 .map(mapper::toDomain)
                 .toList();
+    }
+
+    @Override
+    public Optional<Attraction> findById(Long id) {
+        return repository.findById(id).map(mapper::toDomain);
+    }
+
+    @Override
+    public List<Attraction> findAllById(List<Long> ids) {
+        return repository.findAllById(ids).stream()
+                .map(mapper::toDomain)
+                .collect(Collectors.toList());
     }
 }

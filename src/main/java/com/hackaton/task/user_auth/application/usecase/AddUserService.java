@@ -19,11 +19,10 @@ public class AddUserService implements AddUserUseCase {
     private final PasswordEncoder passwordEncoder;
     private final TokenGeneratorPort tokenGenerator;
 
-
     @Override
     public JwtAuthenticationResponse addUser(AddUserCommand command) {
         if (userRepository.findByEmail(command.email()).isPresent()){
-            throw new IllegalArgumentException("Phone already exists");
+            throw new IllegalArgumentException("Email already exists");
         }
         var user = User.builder()
                 .phone(command.phone())

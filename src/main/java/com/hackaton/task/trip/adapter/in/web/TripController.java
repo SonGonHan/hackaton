@@ -1,7 +1,11 @@
 package com.hackaton.task.trip.adapter.in.web;
 
-import com.hackaton.task.trip.application.in.AttractionUseCase;
+import com.hackaton.task.trip.adapter.in.web.dto.TripRoadRequest;
+import com.hackaton.task.trip.adapter.in.web.dto.TripRoadResponse;
+import com.hackaton.task.trip.application.in.ParseObjectsUseCase;
+import com.hackaton.task.trip.application.in.command.MakeRoadCommand;
 import com.hackaton.task.trip.application.in.command.ParseObjectsCommand;
+import com.hackaton.task.trip.application.usecase.MakeRoadService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,7 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class TripController {
 
-	private final AttractionUseCase attractionServiceUseCase;
+	private final ParseObjectsUseCase attractionServiceUseCase;
+	private final MakeRoadService makeRoadService;
 
 	@Value("${app.res.xml-path}")
 	private String OBJECT_XML;
@@ -32,6 +37,15 @@ public class TripController {
 		}
 
 		return ResponseEntity.ok(true);
+	}
+
+	@PostMapping("/make-road")
+	public TripRoadResponse makeRoad(TripRoadRequest tripRoadRequest) {
+		MakeRoadCommand command = new MakeRoadCommand(
+				tripRoadRequest.distance(),
+				tripRoadRequest.attractions()
+		);
+		return makeRoadService.makeRoad(command);
 	}
 
 }

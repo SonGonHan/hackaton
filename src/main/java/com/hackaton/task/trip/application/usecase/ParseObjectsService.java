@@ -19,7 +19,7 @@ import java.io.File;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class AttractionService implements AttractionUseCase {
+public class ParseObjectsService implements AttractionUseCase {
 
 	private final AttractionRepository attractionRepository;
 

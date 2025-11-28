@@ -1,5 +1,8 @@
 package com.hackaton.task.user_auth.adapter.in.web.dto;
 
+import lombok.Builder;
+
+@Builder
 public record AddUserRequest(String email,
                              String phone,
                              String password,
