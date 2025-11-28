@@ -6,10 +6,8 @@ import com.hackaton.task.user_auth.adapter.in.web.dto.UserDTO;
 import com.hackaton.task.user_auth.application.port.in.AddUserUseCase;
 import com.hackaton.task.user_auth.application.port.in.GetAllUsersUseCase;
 import com.hackaton.task.user_auth.application.port.in.command.AddUserCommand;
-import com.hackaton.task.user_auth.application.port.out.UserRepository;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.User;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -1,6 +1,7 @@
 package com.hackaton.task.trip.application.usecase;
 
-import com.hackaton.task.trip.application.in.AttractionServiceUseCase;
+import com.hackaton.task.trip.application.in.ParseObjectsUseCase;
+import com.hackaton.task.trip.application.in.command.ParseObjectsCommand;
 import com.hackaton.task.trip.application.out.AttractionRepository;
 import com.hackaton.task.trip.domain.Attraction;
 import lombok.RequiredArgsConstructor;
@@ -12,19 +13,18 @@ import org.w3c.dom.NodeList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class AttractionService implements AttractionServiceUseCase {
+public class ParseObjectsService implements ParseObjectsUseCase {
 
 	private final AttractionRepository attractionRepository;
 
-	public Boolean parseObjectsFromXml(String xmlPath) throws Exception {
+	@Override
+	public Boolean parseObjectsFromXml(ParseObjectsCommand command) throws Exception {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = factory.newDocumentBuilder();
-		Document doc = builder.parse(new File(xmlPath));
+		Document doc = builder.parse(new File(command.xml()));
 
 		NodeList nodes = doc.getElementsByTagName("node");
 

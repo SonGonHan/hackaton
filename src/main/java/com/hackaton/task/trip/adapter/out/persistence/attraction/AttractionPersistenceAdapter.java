@@ -2,8 +2,12 @@ package com.hackaton.task.trip.adapter.out.persistence.attraction;
 
 import com.hackaton.task.trip.application.out.AttractionRepository;
 import com.hackaton.task.trip.domain.Attraction;
+import com.hackaton.task.trip.domain.Trip;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Optional;
 
 @Repository
 @RequiredArgsConstructor
@@ -11,6 +15,7 @@ public class AttractionPersistenceAdapter implements AttractionRepository {
 
     private final AttractionJpaRepository repository;
     private final AttractionPersistenceMapper mapper;
+
 
     @Override
     public void save(Attraction attraction) {
@@ -22,5 +27,10 @@ public class AttractionPersistenceAdapter implements AttractionRepository {
     public void delete(Attraction attraction) {
         var entity = mapper.toEntity(attraction);
         repository.delete(entity);
+    }
+
+    @Override
+    public Optional<Attraction> findById(Long id) {
+        return repository.findById(id).map(mapper::toDomain);
     }
 }
