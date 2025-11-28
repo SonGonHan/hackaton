@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -27,6 +29,13 @@ public class AttractionPersistenceAdapter implements AttractionRepository {
     public void delete(Attraction attraction) {
         var entity = mapper.toEntity(attraction);
         repository.delete(entity);
+    }
+
+    @Override
+    public List<Attraction> findAll() {
+        return repository.findAll().stream()
+                .map(mapper::toDomain)
+                .toList();
     }
 
     @Override

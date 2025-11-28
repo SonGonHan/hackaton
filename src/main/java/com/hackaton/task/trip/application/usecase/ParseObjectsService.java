@@ -1,10 +1,12 @@
 package com.hackaton.task.trip.application.usecase;
 
-import com.hackaton.task.trip.application.in.ParseObjectsUseCase;
+import com.hackaton.task.trip.application.in.AttractionUseCase;
 import com.hackaton.task.trip.application.in.command.ParseObjectsCommand;
 import com.hackaton.task.trip.application.out.AttractionRepository;
 import com.hackaton.task.trip.domain.Attraction;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -14,17 +16,19 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
-public class ParseObjectsService implements ParseObjectsUseCase {
+public class AttractionService implements AttractionUseCase {
 
 	private final AttractionRepository attractionRepository;
 
 	@Override
+	@Transactional
 	public Boolean parseObjectsFromXml(ParseObjectsCommand command) throws Exception {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = factory.newDocumentBuilder();
-		Document doc = builder.parse(new File(command.xml()));
+		Document doc = builder.parse(new File(command.xmlPath()));
 
 		NodeList nodes = doc.getElementsByTagName("node");
 

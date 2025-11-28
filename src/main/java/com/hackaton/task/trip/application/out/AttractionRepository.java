@@ -6,6 +6,8 @@ import com.hackaton.task.trip.domain.Trip;
 import java.util.List;
 import java.util.Optional;
 
+import java.util.List;
+
 public interface AttractionRepository {
     void save(Attraction attraction);
 
@@ -13,4 +15,5 @@ public interface AttractionRepository {
 
     Optional<Attraction> findById(Long id);
 
+    List<Attraction> findAll();
 }

@@ -15,7 +15,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class AttractionEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;

@@ -20,4 +20,4 @@ app:
     secret: "ca9860821ee9e7a57219dfadec76a0b7c79e96e9e56cd0ce6dbb7e18c73e6059"
     expiration: 604800 # 7 days
   res:
-    xml-path: "resources/vologda.xml"
+    xml-path: "src/main/resources/vologda.xml"
