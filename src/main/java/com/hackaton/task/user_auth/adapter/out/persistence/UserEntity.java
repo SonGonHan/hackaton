@@ -9,7 +9,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = "phone")})
+@Table(name = "users", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "phone"),
+        @UniqueConstraint(columnNames = "email")
+})
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
