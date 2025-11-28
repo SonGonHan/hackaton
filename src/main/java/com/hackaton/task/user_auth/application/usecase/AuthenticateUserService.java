@@ -20,7 +20,7 @@ public class AuthenticateUserService implements AuthenticateUserUseCase {
 
     @Override
     public JwtAuthenticationResponse authenticateUser(AuthenticateUserCommand command) {
-        var user = userRepository.findByPhone(command.phone())
+        var user = userRepository.findByEmail(command.email())
                 .orElseThrow(() -> new BadCredentialsException("User not found"));
 
         if (!passwordEncoder.matches(command.password(), user.getPassword())){

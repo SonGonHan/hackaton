@@ -1,4 +1,4 @@
 package com.hackaton.task.user_auth.adapter.in.web.dto;
 
-public record SignInRequest (String phone, String password){
+public record SignInRequest (String email, String password){
 }
