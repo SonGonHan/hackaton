@@ -35,6 +35,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/users/**").permitAll()
                         .requestMatchers("/trip/**").permitAll()
+                        .requestMatchers("/attractions/**").permitAll()
                         .anyRequest().authenticated()
                 )  // ← закрываем authorizeHttpRequests
                 .authenticationProvider(authenticationProvider())  // ← это часть http

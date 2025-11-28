@@ -36,8 +36,8 @@ public class TripPersistenceAdapter implements TripRepository {
     }
 
     @Override
-    public List<Attraction> findAttractionsByTripId(Long tripId) {
-        return repository.findAttractionsByTripId(tripId).stream()
+    public List<Attraction> findAttractionsById(Long tripId) {
+        return repository.findAttractionsById(tripId).stream()
                 .map(attractionMapper::toDomain)
                 .toList();
     }

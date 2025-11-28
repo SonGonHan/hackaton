@@ -6,6 +6,6 @@ import lombok.Builder;
 import java.util.List;
 
 
-public record TripRoadRequest(Long distance,
+public record TripRoadRequest(Integer distance,
                               List<Attraction> attractions) {
 }
