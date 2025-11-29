@@ -7,13 +7,12 @@ import org.springframework.stereotype.Component;
 public class AttractionPersistenceMapper {
 
     public Attraction toDomain(AttractionEntity entity) {
-        return new Attraction(entity.getId(), entity.getName(), entity.getLatitude(), entity.getLongitude());
-//        return Attraction.builder()
-//                .id(entity.getId())
-//                .name(entity.getName())
-//                .latitude(entity.getLatitude())
-//                .longitude(entity.getLongitude())
-//                .build();
+        return Attraction.builder()
+                .id(entity.getId())
+                .name(entity.getName())
+                .latitude(entity.getLatitude())
+                .longitude(entity.getLongitude())
+                .build();
     }
 
     public AttractionEntity toEntity(Attraction domain) {

@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 
 @Data
-//@Builder
+@Builder
 @AllArgsConstructor
 public class Attraction {
     private Long id;

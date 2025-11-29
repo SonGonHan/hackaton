@@ -49,15 +49,12 @@ public class ParseObjectsService implements ParseObjectsUseCase {
 			}
 
 			if (name != null && isNeed) {
-				Attraction attr = new Attraction(Long.valueOf(node.getAttribute("id")), name,
-												 Double.parseDouble(node.getAttribute("lat")),
-												 Double.parseDouble(node.getAttribute("lon")));
-//						Attraction.builder()
-//											.id(Long.valueOf(node.getAttribute("id")))
-//											.name(name)
-//											.latitude(Double.parseDouble(node.getAttribute("lat")))
-//											.longitude(Double.parseDouble(node.getAttribute("lon")))
-//											.build();
+				Attraction attr = Attraction.builder()
+											.id(Long.valueOf(node.getAttribute("id")))
+											.name(name)
+											.latitude(Double.parseDouble(node.getAttribute("lat")))
+											.longitude(Double.parseDouble(node.getAttribute("lon")))
+											.build();
 
 				attractionRepository.save(attr);
 			}
