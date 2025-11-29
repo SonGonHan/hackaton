@@ -36,6 +36,8 @@ public class SecurityConfiguration {
                         .requestMatchers("/users/**").permitAll()
                         .requestMatchers("/trip/**").permitAll()
                         .requestMatchers("/attractions/**").permitAll()
+                        .requestMatchers("/trip/**").permitAll()
+                        .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-resources/**", "/webjars/**").permitAll()
                         .anyRequest().authenticated()
                 )  // ← закрываем authorizeHttpRequests
                 .authenticationProvider(authenticationProvider())  // ← это часть http
