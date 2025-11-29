@@ -21,3 +21,5 @@ app:
     expiration: 604800 # 7 days
   res:
     xml-path: "src/main/resources/vologda.xml"
+  giga-chat:
+    auth-token: "MDE5YWNlOWEtM2MyYy03M2E5LWIyYTYtOWNkOTY0OTlkNTE4OmU4ZjQ4OGM1LTEyY2MtNDhjNi05NTI4LTRkMzgxMjEwZmZhNA=="
