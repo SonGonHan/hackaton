@@ -12,12 +12,15 @@ import com.hackaton.task.trip.application.in.command.ParseObjectsCommand;
 import com.hackaton.task.trip.application.in.command.TripRouteGetCommand;
 import com.hackaton.task.trip.application.in.command.TripRouteSaveCommand;
 import com.hackaton.task.trip.application.usecase.MakeRoadService;
+import com.hackaton.task.trip.domain.Trip;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.*;
 
 @Slf4j
 @RestController
@@ -46,7 +49,7 @@ public class TripController {
 	}
 
 	@PostMapping("/make-road")
-	public TripRoadResponse makeRoad(TripRoadRequest tripRoadRequest) {
+	public TripRoadResponse makeRoad(@RequestBody TripRoadRequest tripRoadRequest) {
 		MakeRoadCommand command = new MakeRoadCommand(
 				tripRoadRequest.distance(),
 				tripRoadRequest.attractions()
@@ -62,6 +65,11 @@ public class TripController {
 	@GetMapping("/get-route/{id}")
 	public TripRouteSaveResponse getRoute(@PathVariable Long id) {
 		return tripRouteGetUseCase.getTripRoute(new TripRouteGetCommand(id));
+	}
+
+	@GetMapping("/")
+	public List<Trip> getRoute() {
+		return tripRouteGetUseCase.getAllTripRoutes();
 	}
 
 }

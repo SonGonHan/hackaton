@@ -8,6 +8,8 @@ import com.hackaton.task.trip.domain.Trip;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class TripRouteGetService implements TripRouteGetUseCase {
@@ -20,5 +22,11 @@ public class TripRouteGetService implements TripRouteGetUseCase {
 				.orElseThrow(() -> new IllegalArgumentException("Trip not found with id: " + command.id()));
 
 		return new TripRouteSaveResponse(trip.getName(), trip.getAttractions());
+	}
+
+	@Override
+	public List<Trip> getAllTripRoutes() {
+
+		return tripRepository.findAll();
 	}
 }

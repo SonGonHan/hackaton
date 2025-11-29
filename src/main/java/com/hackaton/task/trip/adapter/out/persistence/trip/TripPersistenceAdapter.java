@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Repository
@@ -63,6 +64,11 @@ public class TripPersistenceAdapter implements TripRepository {
 		return repository.findAttractionsById(tripId).stream()
 						 .map(attractionMapper::toDomain)
 						 .toList();
+	}
+
+	@Override
+	public List<Trip> findAll() {
+		return repository.findAll().stream().map(tripMapper::toDomain).collect(Collectors.toList());
 	}
 
 }

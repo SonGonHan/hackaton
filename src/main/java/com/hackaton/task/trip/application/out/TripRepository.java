@@ -16,4 +16,6 @@ public interface TripRepository {
     Optional<Trip> findById(Long id);
 
     List<Attraction> findAttractionsById(Long tripId);
+
+    List<Trip> findAll();
 }
