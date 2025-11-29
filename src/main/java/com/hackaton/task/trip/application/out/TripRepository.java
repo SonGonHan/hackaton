@@ -9,9 +9,13 @@ import java.util.Optional;
 public interface TripRepository {
     void save(Trip trip);
 
+    void saveRef(Trip trip, List<Attraction> attractions);
+
     void delete(Trip trip);
 
     Optional<Trip> findById(Long id);
 
     List<Attraction> findAttractionsById(Long tripId);
+
+    List<Trip> findAll();
 }

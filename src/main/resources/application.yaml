@@ -11,6 +11,11 @@ spring:
     properties:
       hibernate:
         format_sql: true
+#  sql:
+#    init:
+#      mode: always
+#      data-locations: classpath:data.sql
+
 server:
   port: 8080
 
@@ -21,3 +26,8 @@ app:
     expiration: 604800 # 7 days
   res:
     xml-path: "src/main/resources/vologda.xml"
+
+springdoc:
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html

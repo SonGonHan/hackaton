@@ -24,9 +24,12 @@ public class TripEntity {
 
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "trip_id")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "trip_attractions",
+            joinColumns = @JoinColumn(name = "trip_id"),
+            inverseJoinColumns = @JoinColumn(name = "attraction_id")
+    )
+    @OrderColumn(name = "position")
     private List<AttractionEntity> attractions = new ArrayList<>();
-
-
 }
